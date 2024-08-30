@@ -1,5 +1,6 @@
 export const test = (req,res)=>{
-    res.send({
-        "message": "api route is working"
-    })
+ res.send({
+    "message":"api is working"
+ })
+    
 }
