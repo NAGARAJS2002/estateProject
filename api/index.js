@@ -1,7 +1,17 @@
 import express from 'express';
+import mongoose from "mongoose"
+import env from "dotenv";
+env.config()
+
 const app = express();
 const PORT = 4000;
 
+
+
+mongoose.connect(process.env.CONNECTION_URL).then(()=>{
+    console.log('database connected');
+    
+})
 
 
 
