@@ -11,18 +11,18 @@ export default function Header() {
          const handleSubmit = (e) => {
           e.preventDefault();
           const urlParams = new URLSearchParams(window.location.search);
-          urlParams.set('searchTearm', searchTerm);
+          urlParams.set('searchTerm', searchTerm);
           const searchQuery = urlParams.toString();
-          Navigate(`/search?${searchQuery}`)
-         }
-
-         useEffect(()=>{
+          navigate(`/search?${searchQuery}`);
+        };
+      
+        useEffect(() => {
           const urlParams = new URLSearchParams(location.search);
           const searchTermFromUrl = urlParams.get('searchTerm');
           if (searchTermFromUrl) {
             setSearchTerm(searchTermFromUrl);
           }
-         },[Location.search]);
+        }, [location.search]);
 
   return (
  
