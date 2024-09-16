@@ -5,6 +5,7 @@ import authRouter from "./routes/authRoute.js"
 import userRouter from "./routes/userRoute.js"
 import listingRouter from "./routes/listingRouter.js"
 import cookieParser from 'cookie-parser';
+import path from "path"
 env.config()
 
 const app = express();
@@ -15,7 +16,10 @@ app.use(cookieParser())
 mongoose.connect(process.env.CONNECTION_URL).then(()=>{
     console.log('database connected');
     
-})
+});
+
+
+const __dirname = path.resolve();
 
 
 
@@ -30,6 +34,12 @@ app.listen(PORT,()=>{
 app.use('/api/user',userRouter)
 app.use('/api/auth',authRouter );
 app.use('/api/listing',listingRouter );
+
+app.use(express.static(path.join(__dirname , '/client/dist')));
+
+app.get('*',()=>{
+   res.sendFile(path.join(__dirname , 'client', 'dist', 'index.html')) 
+})
 
 app.use((err,req,res,next)=>{
     const statusCode = err.statusCode || 500;
